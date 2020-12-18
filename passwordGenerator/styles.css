@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Bungee+Outline");
+@import url("https://fonts.googleapis.com/css?family=Jura");
+@import url("https://fonts.googleapis.com/css?family=Padauk");
+
+
+body {
+  background-color:  #d6dbdf;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 50;
+
+}
+h1 {
+  font-family: "Bungee Outline";
+  font-size: 5rem;
+}
+h2 {
+  font-family: "Jura";
+  font-size: 4rem;
+}
+button {
+  font-family: "Padauk";
+  background: #f4f6f;
+  color: black;
+  text-align: center;
+  transition: all 0.3s linear;
+  border: 2px solid #222;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+}
