@@ -106,6 +106,7 @@ function getCharacterScript(code){
 function flattenArray(array){
   return array.reduce((a, b) => a.concat(b));
 }
+
 function every(array, fnCondition){
 
   for(let element of array){
