@@ -119,4 +119,4 @@ function every(array, fnCondition){
 }
 
 let array = [2,4,6,8,112];
-console.log(every(array, e => e%2===0));
+console.log(every(array, e => e%2===1));
