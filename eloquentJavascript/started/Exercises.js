@@ -51,7 +51,17 @@ let reverseArrayInPlace = (array) =>{
   }
 };
 
-var array = [0,1,2,3,4,5,6,7,8,9,110];
-console.log(array);
-reverseArrayInPlace(array);
-console.log(array);
+
+function repeat(n, action) {
+  for (let i = 0; i < n; i++) {
+    action(i)
+  }
+};
+
+let numbers = [];
+
+console.log(numbers);
+repeat(10, i =>{
+    numbers.push(i);
+});
+console.log(numbers);

@@ -57,6 +57,38 @@ List.prototype.get = function(index){
     current = current.next;
   }
 }
+List.prototype.set = function(index, value){
+  let counter = 0;
+  let current = this.head;
+  let stopper = false;
+  if(index === 0){
+    let newNode = new Node(value);
+    let currentNext = current.next;
+    newNode.next = currentNext;
+    this.head = newNode;
+    return;
+  }
+
+
+  while(current != null && !stopper ){
+
+    if(counter === index-1  && current.next != null){
+
+      let currentCopy = current.next;//
+      let newNode = new Node(value);
+      if(currentCopy.next != null){
+        newNode.next = currentCopy.next;
+      }
+
+
+      current.next = newNode;
+
+      stopper = true;
+    }
+    current = current.next;
+    counter++;
+  }
+}
 
 let arrayToList = function(array){
   let list = new List();
@@ -71,4 +103,18 @@ let listToArray = function(list){
     array.push(list.get(i));
   }
   return array;
+}
+
+function sortDesc(... numbers){
+  let list = arrayToList(numbers);
+  for(let i = 0; i<list.size; i++){
+    for(let j = 0; j<list.size-1; j++){
+      if(list.get(j).value<list.get(j+1).value){
+        let copy = list.get(j).value;
+        list.set(j, list.get(j+1).value);
+        list.set(j+1, copy);
+      }
+    }
+  }
+  return list;
 }
