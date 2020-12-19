@@ -46,7 +46,6 @@ const SCRIPTS = require('./dataset');
 function filter(array, test){
   let passed = [];
   for(let element of array){
-    console.log(test(element));
     if(test(element)){
       passed.push(element);
     }
@@ -57,4 +56,67 @@ function filter(array, test){
 
 //console.log(SCRIPTS.filter(script => script.living)); // Diferente poner () => a poner n => n porque n sería el parámetro
 
-console.log(SCRIPTS.filter(data => data.direction=='ttb' && data.living));
+//console.log(SCRIPTS.filter(data => data.direction=='ttb' && data.living));
+
+function map(array, action){
+  let mapped = [];
+  for(let element of array){
+    mapped.push(action(element));
+  }
+  return mapped;
+}
+function reduce(array, actionCombine, start){
+  let current = start;
+  for(let element of array){
+    //console.log(current, " <- current, actionCombine result -> ",  actionCombine(current, element));
+    current = actionCombine(current, element);
+  }
+  return current;
+}
+//Finding the script with the most characters
+function countCharacters(script){
+  return reduce(script.ranges, (count, [from, to])=>{
+    return count + (to-from);
+  }, 0);
+}
+/*
+console.log(SCRIPTS.reduce( (a, b) => {
+  return countCharacters(a) < countCharacters(b) ? b : a;
+}));// → {name: "Han"
+*/
+
+function getAverage(array){
+  return reduce(array, (a,b) => a+b, 0) / array.length;
+}
+/*
+console.log(Math.round(getAverage(SCRIPTS.filter(ef => ef.living).map(e => e.year)))); //First we're having all of the living scripts and then we're getting the years to get the aberage of it
+console.log(Math.round(getAverage(SCRIPTS.filter(ef => !ef.living).map(e => e.year))));
+*/
+function getCharacterScript(code){
+  for(let script of SCRIPTS){
+    if(script.ranges.some(([from, to ]) => {
+      return code>=from && code< to;
+    })){
+      return script;
+    }
+  }
+  return null;
+}
+
+function flattenArray(array){
+  return array.reduce((a, b) => a.concat(b));
+}
+
+
+function every(array, fnCondition){
+
+  for(let element of array){
+    if(!fnCondition(element)){
+      return false;
+    }
+  }
+  return true;
+}
+
+let array = [2,4,6,8,112];
+console.log(every(array, e => e%2===0));
