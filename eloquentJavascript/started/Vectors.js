@@ -65,7 +65,6 @@ class Group{
     }
   }
 
-
   toString(){
     return this.elements.toString;
   }

@@ -41,7 +41,7 @@ repeat(10, n =>{
     console.log(n, " is even");
   });
 });*/
-const SCRIPTS = require('./dataset');
+const SCRIPTS = require('./dataset'); //The module need this and Node.js allows to get the interface of it
 
 function filter(array, test){
   let passed = [];
